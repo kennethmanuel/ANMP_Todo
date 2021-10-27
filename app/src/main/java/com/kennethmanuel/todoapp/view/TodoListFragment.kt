@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.kennethmanuel.todoapp.R
+import kotlinx.android.synthetic.main.fragment_todo_list.*
 
 class TodoListFragment : Fragment() {
     override fun onCreateView(
@@ -18,5 +20,10 @@ class TodoListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fabAdd.setOnClickListener {
+            val action = TodoListFragmentDirections.actionCreateTodo()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }
