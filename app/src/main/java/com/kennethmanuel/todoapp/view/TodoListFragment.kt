@@ -10,12 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kennethmanuel.todoapp.R
+import com.kennethmanuel.todoapp.model.Todo
 import com.kennethmanuel.todoapp.viewmodel.ListTodoViewModel
 import kotlinx.android.synthetic.main.fragment_todo_list.*
 
 class TodoListFragment : Fragment() {
     private lateinit var viewModel:ListTodoViewModel
-    private var todoListAdapter:TodoListAdapter = TodoListAdapter(arrayListOf())
+    private var todoListAdapter:TodoListAdapter = TodoListAdapter(arrayListOf(),
+        { item -> doClick(item) })
+
+    fun doClick(item:Any) {
+        viewModel.clearTask(item as Todo)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
