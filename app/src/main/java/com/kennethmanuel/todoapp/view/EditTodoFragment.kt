@@ -37,6 +37,7 @@ class EditTodoFragment : Fragment() {
                 txtTitle.text.toString(),
                 txtNotes.text.toString(),
                 radio.tag.toString().toInt(),
+                0,
                 uuid
             )
             Toast.makeText(view.context, "Todo updated", Toast.LENGTH_SHORT).show()

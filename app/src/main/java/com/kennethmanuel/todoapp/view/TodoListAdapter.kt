@@ -27,6 +27,14 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick:(Any) -> 
     }
 
     override fun onBindViewHolder(holder: TodoListViewHolder, position: Int) {
+        if(todoList[position].is_done == 1) {
+            holder.view.imgEdit.visibility = View.GONE
+            holder.view.checkTask.visibility = View.GONE
+        } else {
+            holder.view.imgEdit.visibility = View.VISIBLE
+            holder.view.checkTask.visibility = View.VISIBLE
+        }
+
         holder.view.checkTask.text = todoList[position].title + " " + todoList[position].priority
 
         holder.view.imgEdit.setOnClickListener {
