@@ -2,6 +2,7 @@ package com.kennethmanuel.todoapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.kennethmanuel.todoapp.model.Todo
 import com.kennethmanuel.todoapp.model.TodoDatabase
@@ -14,6 +15,14 @@ import kotlin.coroutines.CoroutineContext
 
 class DetailTodoViewModel(application: Application):AndroidViewModel(application), CoroutineScope {
     private var job = Job()
+    val todoLD = MutableLiveData<Todo>()
+
+    fun fetch(uuid:Int) {
+        launch {
+            val db = buildDB(getApplication())
+            todoLD.value = db.todoDao().selectTodo(uuid)
+        }
+    }
 
     fun addTodo(todo: Todo) {
         launch {
